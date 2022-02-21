@@ -8,4 +8,5 @@ package com.yzy.test;
  * @Version
  **/
 public class GitTest {
+    //SSH-push测试
 }
