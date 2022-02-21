@@ -9,4 +9,6 @@ package com.yzy.test;
  **/
 public class GitTest {
     //SSH-push测试
+
+    //GitHub pull测试
 }
