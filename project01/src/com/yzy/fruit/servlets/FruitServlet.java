@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -38,25 +40,44 @@ public class FruitServlet extends ViewBaseServlet {
             operation="index";
         }
 
-        switch (operation) {
-            case "index":
-                index(req,resp);
-                break;
-            case "add":
-                add(req,resp);
-                break;
-            case "del":
-                del(req, resp);
-                break;
-            case "edit":
-                edit(req, resp);
-                break;
-            case "update":
-                update(req, resp);
-                break;
-            default:
-                throw new RuntimeException("operation不合法");
+        //方式二：根据方法名反射
+        Method[] methods = this.getClass().getDeclaredMethods();
+        for(Method method:methods){
+            String methodName = method.getName();
+            if (operation.equals(methodName)) {
+                try {
+                    method.invoke(this, req, resp);
+                    return;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+        throw new RuntimeException("operation不合法");
+
+
+        //方式一： 缺点：当operation很多时，switch很长
+//        switch (operation) {
+//            case "index":
+//                index(req,resp);
+//                break;
+//            case "add":
+//                add(req,resp);
+//                break;
+//            case "del":
+//                del(req, resp);
+//                break;
+//            case "edit":
+//                edit(req, resp);
+//                break;
+//            case "update":
+//                update(req, resp);
+//                break;
+//            default:
+//                throw new RuntimeException("operation不合法");
+//        }
 
 
     }
