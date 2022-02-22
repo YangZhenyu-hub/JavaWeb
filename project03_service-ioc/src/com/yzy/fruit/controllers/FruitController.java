@@ -1,7 +1,6 @@
 package com.yzy.fruit.controllers;
 
-import com.yzy.fruit.biz.FruitService;
-import com.yzy.fruit.biz.impl.FruitServiceImpl;
+import com.yzy.fruit.service.FruitService;
 import com.yzy.fruit.pojo.Fruit;
 import com.yzy.myssm.utils.StringUtils;
 
@@ -19,7 +18,7 @@ import java.util.List;
 
 public class FruitController {
 
-    FruitService fruitService=new FruitServiceImpl();
+    FruitService fruitService=null;
 
     /*
      * @Description TODO 更新操作

@@ -1,4 +1,4 @@
-package com.yzy.fruit.biz;
+package com.yzy.fruit.service;
 
 import com.yzy.fruit.pojo.Fruit;
 

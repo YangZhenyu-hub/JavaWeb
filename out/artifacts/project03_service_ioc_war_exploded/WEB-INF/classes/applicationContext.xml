@@ -2,7 +2,15 @@
 
 <beans>
     <!-- 这个bean标签的作用是 将来servletpath中涉及的名字对应的是fruit，那么就要FruitController这个类来处理 -->
-    <bean id="fruit" class="com.yzy.fruit.controllers.FruitController"/>
+    <bean id="fruitDAO" class="com.yzy.fruit.dao.impl.FruitDAOImpl"></bean>
+    <bean id="fruitService" class="com.yzy.fruit.service.impl.FruitServiceImpl">
+        <property name="fruitDAO" ref="fruitDAO"></property>
+    </bean>
+    <bean id="fruit" class="com.yzy.fruit.controllers.FruitController">
+        <!-- property标签用来表示属性；name表示属性名；ref表示引用其他bean的id值-->
+        <property name="fruitService" ref="fruitService"></property>
+    </bean>
+
 </beans>
 
 

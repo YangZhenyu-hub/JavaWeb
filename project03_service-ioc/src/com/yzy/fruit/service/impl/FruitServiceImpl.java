@@ -1,8 +1,7 @@
-package com.yzy.fruit.biz.impl;
+package com.yzy.fruit.service.impl;
 
-import com.yzy.fruit.biz.FruitService;
+import com.yzy.fruit.service.FruitService;
 import com.yzy.fruit.dao.FruitDAO;
-import com.yzy.fruit.dao.impl.FruitDAOImpl;
 import com.yzy.fruit.pojo.Fruit;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  * @Version
  **/
 public class FruitServiceImpl implements FruitService {
-    FruitDAO fruitDAO = new FruitDAOImpl();
+    FruitDAO fruitDAO = null;
     @Override
     public List<Fruit> getFruitList(String keyword, Integer pageNum) {
         return fruitDAO.getFruitList(keyword,pageNum);
