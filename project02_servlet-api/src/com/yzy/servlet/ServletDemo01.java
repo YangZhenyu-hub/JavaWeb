@@ -34,6 +34,6 @@ public class ServletDemo01 extends HttpServlet {
         config.getInitParameter("hello");
 
         ServletContext servletContext = getServletContext();
-        String contextConfigLocation = servletContext.getInitParameter("contextConfigLocation");
+        servletContext.getInitParameter("contextConfigLocation");
     }
 }
