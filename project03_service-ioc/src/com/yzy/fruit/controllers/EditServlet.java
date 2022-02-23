@@ -1,4 +1,4 @@
-package com.yzy.fruit.servlets;
+package com.yzy.fruit.controllers;
 
 import com.yzy.fruit.dao.FruitDAO;
 import com.yzy.fruit.dao.impl.FruitDAOImpl;

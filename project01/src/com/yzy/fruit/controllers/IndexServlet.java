@@ -1,4 +1,4 @@
-package com.yzy.fruit.servlets;
+package com.yzy.fruit.controllers;
 
 
 import com.yzy.fruit.dao.FruitDAO;
@@ -6,12 +6,9 @@ import com.yzy.fruit.dao.impl.FruitDAOImpl;
 import com.yzy.fruit.pojo.Fruit;
 import com.yzy.myssm.myspringmvc.ViewBaseServlet;
 import com.yzy.myssm.utils.StringUtils;
-import sun.misc.Request;
 
-import javax.jws.WebService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
