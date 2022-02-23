@@ -45,7 +45,9 @@ public class DispatcherServlet extends ViewBaseServlet{
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
+        //编码格式通过CharacterEncodingFilter完成
+        //req.setCharacterEncoding("UTF-8");
+
 
 
         /*
