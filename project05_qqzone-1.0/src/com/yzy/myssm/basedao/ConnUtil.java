@@ -1,8 +1,11 @@
 package com.yzy.myssm.basedao;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * @ClassName ConnUtil
@@ -15,10 +18,24 @@ public class ConnUtil {
     private static Connection conn;
     private static ThreadLocal<Connection> threadLocal=new ThreadLocal<>();
 
-    public static final String DRIVER = "com.mysql.jdbc.Driver" ;
-    public static final String URL = "jdbc:mysql://localhost:3306/qqzonedb2?useUnicode=true&characterEncoding=utf-8&useSSL=false";
-    public static final String USER = "root";
-    public static final String PWD = "#@*yzy123" ;
+    public static String DRIVER;
+    public static String URL;
+    public static String USER;
+    public static String PWD;
+
+    static {
+        InputStream inputStream = ConnUtil.class.getClassLoader().getResourceAsStream("jdbc.properties");
+        Properties properties=new Properties();
+        try {
+            properties.load(inputStream);
+            DRIVER= properties.getProperty("jdbc.driver");
+            URL= properties.getProperty("jdbc.url");
+            USER= properties.getProperty("jdbc.user");
+            PWD= properties.getProperty("jdbc.password");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static Connection createConn() {
         try {
