@@ -1,5 +1,10 @@
 package com.yzy.myssm.basedao;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.pool.DruidDataSourceFactory;
+
+import javax.sql.DataSource;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -23,15 +28,16 @@ public class ConnUtil {
     public static String USER;
     public static String PWD;
 
+    static Properties properties=new Properties();
     static {
+
         InputStream inputStream = ConnUtil.class.getClassLoader().getResourceAsStream("jdbc.properties");
-        Properties properties=new Properties();
         try {
             properties.load(inputStream);
-            DRIVER= properties.getProperty("jdbc.driver");
-            URL= properties.getProperty("jdbc.url");
-            USER= properties.getProperty("jdbc.user");
-            PWD= properties.getProperty("jdbc.password");
+//            DRIVER= properties.getProperty("jdbc.driver");
+//            URL= properties.getProperty("jdbc.url");
+//            USER= properties.getProperty("jdbc.user");
+//            PWD= properties.getProperty("jdbc.password");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,8 +45,20 @@ public class ConnUtil {
 
     public static Connection createConn() {
         try {
-            Class.forName(DRIVER);
-            return DriverManager.getConnection(URL, USER, PWD);
+            DataSource druidDataSource = DruidDataSourceFactory.createDataSource(properties);
+            //方式一
+            /*
+            DruidDataSource druidDataSource=new DruidDataSource();
+            druidDataSource.setDriverClassName(DRIVER);
+            druidDataSource.setUrl(URL);
+            druidDataSource.setUsername(USER);
+            druidDataSource.setPassword(PWD);
+            */
+            return druidDataSource.getConnection();
+
+
+//            Class.forName(DRIVER);
+//            return DriverManager.getConnection(URL, USER, PWD);
         } catch (Exception e) {
             e.printStackTrace();
             throw new BaseDAOException("BaseDAO出错 数据库连接获取失败");
