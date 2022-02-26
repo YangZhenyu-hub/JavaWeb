@@ -16,12 +16,24 @@
 
     <bean id="userBasicDAO" class="com.yzy.qqzone.dao.impl.UserBasicDAOImpl"/>
     <bean id="topicDAO" class="com.yzy.qqzone.dao.impl.TopicDAOImpl"/>
+    <bean id="replyDAO" class="com.yzy.qqzone.dao.impl.ReplyDAOImpl"/>
+    <bean id="hostReplyDAO" class="com.yzy.qqzone.dao.impl.HostReplyDAOImpl"/>
 
     <bean id="userBasicService" class="com.yzy.qqzone.service.impl.UserBasicServiceImpl">
         <property name="userBasicDAO" ref="userBasicDAO"/>
     </bean>
     <bean id="topicService" class="com.yzy.qqzone.service.impl.TopicServiceImpl">
         <property name="topicDAO" ref="topicDAO"/>
+        <property name="replyService" ref="replyService"/>
+        <property name="userBasicService" ref="userBasicService"/>
+    </bean>
+    <bean id="replyService" class="com.yzy.qqzone.service.impl.ReplyServiceImpl">
+        <property name="replyDAO" ref="replyDAO"/>
+        <property name="hostReplyService" ref="hostReplyService"/>
+        <property name="userBasicService" ref="userBasicService"/>
+    </bean>
+    <bean id="hostReplyService" class="com.yzy.qqzone.service.impl.HostReplyServiceImpl">
+        <property name="hostReplyDAO" ref="hostReplyDAO"/>
     </bean>
 
     <bean id="user" class="com.yzy.qqzone.controller.UserController">
@@ -29,15 +41,22 @@
         <property name="topicService" ref="topicService"/>
     </bean>
 
-    <bean id="page" class="com.yzy.myssm.myspringmvc.PageController"/>
+    <bean id="topic" class="com.yzy.qqzone.controller.TopicController">
+        <property name="topicService" ref="topicService"/>
+    </bean>
 
+    <bean id="reply" class="com.yzy.qqzone.controller.ReplyController">
+        <property name="replyService" ref="replyService"/>
+    </bean>
+
+    <bean id="page" class="com.yzy.myssm.myspringmvc.PageController"/>
 </beans>
-<!--
-Node 节点
-    Element 元素节点
-    Text 文本节点
-<sname>jim</sname>
--->
+        <!--
+        Node 节点
+            Element 元素节点
+            Text 文本节点
+        <sname>jim</sname>
+        -->
 
 
 

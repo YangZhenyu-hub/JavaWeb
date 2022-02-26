@@ -22,4 +22,18 @@ public interface TopicService {
      * @return List<Topic>
      */
     List<Topic> getTopicList(UserBasic userBasic);
+
+    /**
+     * 根据指定id获取topic
+     * @Description TODO
+     * @author yzy 729141789@qq.com
+     * @Date 17:22 2022/2/26
+     * @param id
+     * @return com.yzy.qqzone.pojo.Topic
+     */
+    Topic getTopicDetailById(Integer id);
+
+    Topic getTopic(Integer id);
+
+    void delTopic(Integer id);
 }

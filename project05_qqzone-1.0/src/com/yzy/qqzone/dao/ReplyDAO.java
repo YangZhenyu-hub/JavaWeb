@@ -42,4 +42,7 @@ public interface ReplyDAO {
      * @return void
      */
     void delReply(Integer id);
+
+    Reply getReply(Integer id);
+
 }

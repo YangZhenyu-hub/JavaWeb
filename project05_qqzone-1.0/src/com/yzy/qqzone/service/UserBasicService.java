@@ -2,6 +2,7 @@ package com.yzy.qqzone.service;
 
 import com.yzy.qqzone.pojo.UserBasic;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -32,4 +33,14 @@ public interface UserBasicService {
      * @return java.util.List<com.yzy.qqzone.pojo.UserBasic>
      */
     List<UserBasic> getFriendList(UserBasic userBasic);
+
+    /**
+     * 根据指定Id获取用户信息
+     * @Description TODO
+     * @author yzy 729141789@qq.com
+     * @Date 16:40 2022/2/26
+     * @param id
+     * @return com.yzy.qqzone.pojo.UserBasic
+     */
+    UserBasic getUserBasicById(Integer id);
 }

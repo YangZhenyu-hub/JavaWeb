@@ -18,12 +18,12 @@
                 <th>日期</th>
                 <th>操作</th>
             </tr>
-            <tr th:if="${#lists.isEmpty(session.userBasic.topicList)}">
+            <tr th:if="${#lists.isEmpty(session.friend.topicList)}">
                 <td>暂无日志列表</td>
             </tr>
-            <tr th:unless="${#lists.isEmpty(session.userBasic.topicList)}" th:each="topic : ${session.userBasic.topicList}">
+            <tr th:unless="${#lists.isEmpty(session.friend.topicList)}" th:each="topic : ${session.friend.topicList}">
                 <td th:text="${topic.id}">2</td>
-                <td class="left"><a href="detail.html" th:text="${topic.title}">我乔峰要走，你们谁可阻拦</a></td>
+                <td class="left"><a th:href="@{|/topic.do?operate=topicDetail&id=${topic.id}|}" th:text="${topic.title}">我乔峰要走，你们谁可阻拦</a></td>
                 <td th:text="${topic.topicDate}">2021-09-01 12:30:55</td>
                 <td>删除</td>
             </tr>

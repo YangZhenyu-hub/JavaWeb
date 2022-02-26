@@ -4,6 +4,7 @@ import com.yzy.qqzone.dao.UserBasicDAO;
 import com.yzy.qqzone.pojo.UserBasic;
 import com.yzy.qqzone.service.UserBasicService;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,5 +35,10 @@ public class UserBasicServiceImpl implements UserBasicService {
             friendList.add(friend);
         }
         return friendList;
+    }
+
+    @Override
+    public UserBasic getUserBasicById(Integer id) {
+        return userBasicDAO.getUserBasicById(id);
     }
 }

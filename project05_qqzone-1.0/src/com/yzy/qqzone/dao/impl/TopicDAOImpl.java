@@ -27,11 +27,11 @@ public class TopicDAOImpl extends BaseDAO<Topic> implements TopicDAO{
 
     @Override
     public void deleteTopic(Topic topic) {
-
+        executeUpdate("delete from t_topic where id = ? " , topic.getId());
     }
 
     @Override
     public Topic getTopic(Integer id) {
-        return null;
+        return super.load("select * from t_topic where id=?",id);
     }
 }
