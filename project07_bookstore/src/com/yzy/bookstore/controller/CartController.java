@@ -1,5 +1,6 @@
 package com.yzy.bookstore.controller;
 
+import com.google.gson.Gson;
 import com.yzy.bookstore.pojo.Book;
 import com.yzy.bookstore.pojo.Cart;
 import com.yzy.bookstore.pojo.CartItem;
@@ -46,6 +47,22 @@ public class CartController {
 
     public String editCart(Integer cartItemId, Integer buyCount) {
         cartItemService.updateCartItem(new CartItem(cartItemId , buyCount));
-        return "redirect:cart.do";
+        return "";
+    }
+
+    public String cartInfo(HttpSession session) {
+        User user = (User)session.getAttribute("currUser");
+        Cart cart = cartItemService.getCart(user);
+
+        //调用Cart中的三个属性的get方法，目的是在此处计算这三个属性的值，否则这三个属性为null，
+        //导致的结果就是下一步的gson转化时，为null的属性会被忽略
+        cart.getTotalBookCount();
+        cart.getTotalCount();
+        cart.getTotalMoney();
+
+        Gson gson = new Gson();
+        String cartJsonStr = gson.toJson(cart);
+        return "json:"+cartJsonStr;
+
     }
 }

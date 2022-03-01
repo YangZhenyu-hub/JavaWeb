@@ -58,5 +58,4 @@ public class Cart {
         }
         return totalBookCount;
     }
-
 }

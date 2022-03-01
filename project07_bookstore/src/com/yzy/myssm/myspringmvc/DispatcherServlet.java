@@ -107,10 +107,15 @@ public class DispatcherServlet extends ViewBaseServlet{
 
                     //3.视图处理
                     String methodReturnStr = (String) returnObj;
+                    if (StringUtils.isEmpty(methodReturnStr)) {
+                        return;
+                    }
                     if (methodReturnStr.startsWith("redirect:")) {
                         String redirectStr = methodReturnStr.substring("redirect:".length());
                         resp.sendRedirect(redirectStr);
                     }else if(methodReturnStr.startsWith("json:")){
+                        resp.setCharacterEncoding("UTF-8");
+                        resp.setContentType("application/json");
                         String jsonStr = methodReturnStr.substring("json:".length());
                         PrintWriter out = resp.getWriter();
                         out.print(jsonStr);
